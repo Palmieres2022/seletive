@@ -7,8 +7,6 @@
 
 
 {% block 'body' %}
-
-    
     <br>
     <div class="container">
         {% if messages %}
@@ -23,14 +21,10 @@
             <div class="col-md-3">
                 <img width="100%" src="{{empresa.logo.url}}">
             </div>
-
             <div class="col-md">
                 <h1 class="titulo">{{empresa.nome}}</h1>
                 <p class="paragrafo">{{empresa.endereco}}</p>
             </div>
-
-
-
         </div>
         <br>
         <div class="row">
@@ -58,20 +52,41 @@
             <div class="col-md-3">
             </div>
         </div>
-
         <hr>
-
         <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-lg btn-orange">Nova vaga</a>
 
-        <div class="row">
-            vagas
-        </div>
 
+        <!--Lista de vagas da empresa-->
+        <div class="row">
+            {% for vaga in vagas %}
+                <div class="col-md">
+                    <div class="box-vagas">
+                        <div class="header-vagas">
+                            {{vaga.titulo}}
+                        </div>
+                        <div class="body-vagas">
+                            <div class="row">
+                                <div class="col-md">
+                                    <label class="paragrafo">Nível:</label>
+                                    <br>        
+                                    <label class="paragrafo paragrafo-orange">{{vaga.get_nivel_experiencia_display}}</label>                           
+                                </div>
+                                <div class="col-md">
+                                    <label class="paragrafo">Status <img src="{% static 'empresa/img/flag_green.png' %}"></label>
+                                    <br>        
+                                    <label class="paragrafo paragrafo-orange">{{vaga.get_status_display}}</label>                           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <br>
     <br>
 
-
+    <!--Modal de cadastro de Nova Vaga-->
     <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,7 +95,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'nova_vaga' %}" method="POST">
+                <form action="{% url 'nova_vaga' %}" method="POST">{% csrf_token %}
                     <div class="row">
                         <div class="col-md">
                             <label>Título:</label>

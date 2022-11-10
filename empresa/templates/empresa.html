@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load filtro %}
-
 {% block 'head' %}
     <link href="{% static 'empresa/css/empresas.css' %}" rel="stylesheet">
 {% endblock%}
-
 {% block 'body' %}
     <div class="wrapper">
         <div class="box"> 
@@ -22,14 +20,11 @@
             </div>
             <div class="borda-box"></div>
             <div class="body-box">
-            
                 <form action="{% url 'empresa' %}" method="GET"> {% csrf_token %}
                 <div class="row">
-                    
                         <div class="col-md-5">
                             <input type="text" placeholder="Busque pelo nome" class="form-control" name="nome">
                         </div>
-
                         <div class="col-md-4">
                             <select class="form-select" name="tecnologias">
                                 {% for tech in tecnologias%}
@@ -37,13 +32,11 @@
                                 {% endfor %}
                             </select>
                         </div>
-                    
                     <div class="col-md-3">
                         <input type="submit" value="FILTRAR" class="btn btn-lg btn-orange">
                     </div>
                 </div>
                 </form>
-
                 <table class="tabela" cellpadding="20">
                     <tr>
                         <th>Nome</th>
@@ -54,9 +47,12 @@
                     </tr>
 
                     {% for empresa in empresas%}
-                        
                         <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
-                            <td>{{empresa.nome}}</td>
+                            <td>
+                                <a href="{% url 'empresa_unica' empresa.id %}">
+                                    {{empresa.nome}}
+                                </a>
+                            </td>
                             <td>{{empresa.endereco}}</td>
                             <td>
                                 <select class="form-select">                                    
@@ -78,13 +74,8 @@
                             </td>
                         </tr>
                     {% endfor %}
-                    
                 </table>
             </div>
-
-
-            
-
         </div>
     </div>
 
