@@ -2,7 +2,7 @@
 {% load static %}
 {% load filtro %}
 {% block 'head' %}
-    <link href="{% static 'empresa/css/empresas.css' %}" rel="stylesheet">
+    <link href="{% static '/css/s.css' %}" rel="stylesheet">
 {% endblock%}
 {% block 'body' %}
     <div class="wrapper">
@@ -15,12 +15,12 @@
                         </section>
                     {% endfor %}
                 {% endif %}
-                <h2 class="titulo">Gerenciar empresas</h2>
-                <a href="{% url 'nova_empresa' %}"class="btn-nova-empresa">Nova empresa</a>
+                <h2 class="titulo">Gerenciar s</h2>
+                <a href="{% url 'nova_' %}"class="btn-nova-">Nova </a>
             </div>
             <div class="borda-box"></div>
             <div class="body-box">
-                <form action="{% url 'empresa' %}" method="GET"> {% csrf_token %}
+                <form action="{% url '' %}" method="GET"> {% csrf_token %}
                 <div class="row">
                         <div class="col-md-5">
                             <input type="text" placeholder="Busque pelo nome" class="form-control" name="nome">
@@ -46,31 +46,31 @@
                         <th>Ação</th>
                     </tr>
 
-                    {% for empresa in empresas%}
+                    {% for  in s%}
                         <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
                             <td>
-                                <a href="{% url 'empresa_unica' empresa.id %}">
-                                    {{empresa.nome}}
+                                <a href="{% url '_unica' .id %}">
+                                    {{.nome}}
                                 </a>
                             </td>
-                            <td>{{empresa.endereco}}</td>
+                            <td>{{.endereco}}</td>
                             <td>
                                 <select class="form-select">                                    
-                                    {% for tech in empresa.tecnologias.all %}
+                                    {% for tech in .tecnologias.all %}
                                         <option>{{tech}}</option>
                                     {% endfor %}                       
                                 </select>
                             </td>
                             <td>
-                                {% if empresa.qtd_vagas > 0 %}
-                                    <img src="{% static 'empresa/img/flag_green.png' %}">
+                                {% if .qtd_vagas > 0 %}
+                                    <img src="{% static '/img/flag_green.png' %}">
                                 {% else %}
-                                    <img src="{% static 'empresa/img/flag_red.png' %}">
+                                    <img src="{% static '/img/flag_red.png' %}">
                                 {% endif %}
-                                    &nbsp&nbsp{{empresa.qtd_vagas}}
+                                    &nbsp&nbsp{{.qtd_vagas}}
                             </td>
                             <td>
-                                <a href="{% url 'excluir_empresa' empresa.id %}" class="btn-excluir">Excluir empresa</a>
+                                <a href="{% url 'excluir_' .id %}" class="btn-excluir">Excluir </a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -62,7 +62,9 @@
                 <div class="col-md">
                     <div class="box-vagas">
                         <div class="header-vagas">
-                            {{vaga.titulo}}
+                            
+                            <!--Linkando URL do template vagas.html-->
+                            <a href="{%url 'vaga' vaga.id %}">{{vaga.titulo}}</a
                         </div>
                         <div class="body-vagas">
                             <div class="row">
