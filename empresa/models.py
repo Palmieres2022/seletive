@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Tecnologias(models.Model):
     tecnologia = models.CharField(max_length=30)
 
